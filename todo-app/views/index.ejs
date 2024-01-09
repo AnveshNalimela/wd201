@@ -45,7 +45,7 @@
         <div>
           <div class="flex items-center">
           <h5>Overdue</h5>
-          <div class="h-6 w-7 bg-gray-300 ml-2 mt-1 rounded text-sm text-center w-fit">1</div>
+          <div id="overdue-count" class="h-6 w-7 bg-gray-300 ml-2 mt-1 rounded text-sm text-center w-fit">1</div>
         </div>
           <ul class="list-none">
             <li class="Todo-item">
@@ -83,7 +83,7 @@
           </ul>
           <div class="flex items-center">
             <h5>Due Today</h5>
-            <div class="h-6 w-7 bg-gray-300 ml-2 mt-1 rounded text-sm text-center w-fit">2</div>
+            <div id="due-today-count" class="h-6 w-7 bg-gray-300 ml-2 mt-1 rounded text-sm text-center w-fit">2</div>
           </div>
           
           <ul class="list-none">
@@ -155,7 +155,7 @@
           </ul>
           <div class="flex items-center">
             <h5>Due Later </h5>
-            <div class="h-6 w-7 bg-gray-300 ml-2 mt-1 rounded text-sm text-center w-fit">2</div>
+            <div id="due-later-count" class="h-6 w-7 bg-gray-300 ml-2 mt-1 rounded text-sm text-center w-fit">2</div>
           </div>
           <ul class="list-none">
           <li class="Todo-item">
@@ -230,4 +230,10 @@
       </div>
     </div>
   </body>
+  <script>
+    
+    document.getElementById('overdue-count').innerText = 1;
+    document.getElementById('due-today-count').innerText = 2;
+    document.getElementById('due-later-count').innerText = 2;
+  </script>
 </html>
