@@ -7,18 +7,32 @@ app.use(bodyParser.json());
 
 app.set("view engine ", "ejs");
 app.get("/", async (request, response) => {
-  const allTodos = await Todo.getTodos();
-  if (request.accepts("html")) {
-    response.render("index.ejs", {
-      allTodos
-    })
+  try {
+    const allTodos = await Todo.getTodos();
 
-  } else {
-    response.json({
-      allTodos
-    })
+    const overdueTodos = allTodos.filter(todo => todo.isOverdue());
+    const dueTodayTodos = allTodos.filter(todo => todo.isDueToday());
+    const dueLaterTodos = allTodos.filter(todo => todo.isDueLater());
+
+    if (request.accepts("html")) {
+      response.render('index.ejs', {
+        allTodos,
+        overdueTodos,
+        dueTodayTodos,
+        dueLaterTodos
+      });
+    } else {
+      response.json({
+        allTodos,
+        overdueTodos,
+        dueTodayTodos,
+        dueLaterTodos
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    response.status(404).json({ error: "rendering Error" });
   }
-
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
